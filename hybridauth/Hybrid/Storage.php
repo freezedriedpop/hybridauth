@@ -51,7 +51,10 @@ class Hybrid_Storage
 	{
 		$key = strtolower( $key ); 
 
-		if(!is_object($value) || get_class($value) != 'Closure' || get_class($value) != 'Exception') $_SESSION["HA::STORE"][$key] = serialize( $value );
+        if( !( $value instanceof Exception ) )
+        {
+            $_SESSION["HA::STORE"][$key] = serialize( $value );
+        }
 	}
 
 	function clear()
